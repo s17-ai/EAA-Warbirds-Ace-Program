@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}SAC Application{% endblock %}
+{% block content %}
+<section class="page-hero compact"><div><span class="eyebrow">DIGITAL APPLICATION</span><h1>Statement of Aerobatic Competency</h1><p>Complete the existing EAA-Warbird SAC application digitally. Nothing is saved if you leave before submitting.</p></div></section>
+<section class="application-shell">
+  <div></div>
+  <div class="official-form-card">
+    <div>
+      <strong>Official 3-page SAC application</strong>
+      <p><strong>Current form revision: September 3, 2026.</strong> The fillable SAC form shown here is the same master PDF used for preview and submission to EAA.</p>
+    </div>
+    <div class="official-form-actions">
+      <a class="button tertiary" href="/official-sac-form" target="_blank" rel="noopener">View Official PDF</a>
+    </div>
+  </div>
+  <div class="progress-rail" aria-label="Application sections">
+    <button type="button" data-jump="applicant" class="active">1 <span>Applicant</span></button>
+    <button type="button" data-jump="experience">2 <span>Experience</span></button>
+    <button type="button" data-jump="evaluation">3 <span>Evaluation</span></button>
+    <button type="button" data-jump="signatures">4 <span>Signatures</span></button>
+    <button type="button" data-jump="review">5 <span>Review</span></button>
+  </div>
+  <!-- ACE-SAC-FORM-V6 current selections synchronized to bundled PDF -->
+  <form id="sacForm" class="sac-form" novalidate>
+    <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+    <section id="applicant" class="form-section">
+      <div class="form-heading"><span>PART I</span><h2>Applicant & application</h2></div>
+      <fieldset><legend>Type of application</legend><div class="choice-row"><label><input required type="radio" name="application_type" value="new_issue"> New issue</label><label><input type="radio" name="application_type" value="change"> Change (flight required)</label><label><input type="radio" name="application_type" value="renewal"> Renewal without change</label><label><input type="radio" name="application_type" value="reevaluation"> Re-evaluation</label></div></fieldset>
+      <div class="field-grid two"><label>Applicant name*<input required name="applicant_name"></label><label>Email address<input type="email" name="email"></label><label>Warbirds number*<input required name="warbird_number"></label><label>Date of birth<input type="date" name="dob"></label><label class="span-2">Address*<textarea required name="address" rows="2"></textarea></label><label>Phone<input name="phone"></label><label>FSDO office (city)<input name="fsdo"></label><label>Pilot certificate #*<input required name="pilot_certificate"></label><label>Certificate type<input name="certificate_type"></label><label class="span-2">Ratings<input name="ratings"></label><label>Medical date<input type="date" name="medical_date"></label><label>Medical type<input name="medical_type"></label><label>Date of last flight review<input type="date" name="flight_review_date"></label></div>
+      <fieldset><legend>Applying for - Warbird Aerobatics level</legend><div class="choice-row"><label><input type="radio" name="requested_level" value="250"> 250 feet</label><label><input type="radio" name="requested_level" value="500"> 500 feet</label></div></fieldset>
+    </section>
+
+    <section id="experience" class="form-section">
+      <div class="form-heading"><span>RENEWAL EXPERIENCE</span><h2>Show / practice activity</h2><p>Complete as applicable. Eight rows are provided to match the current fillable form.</p></div>
+      <div class="experience-table"><div class="experience-head"><span>Show name / practice site</span><span>Date</span><span>Show</span><span>Practice</span></div><div id="experienceRows"></div></div>
+    </section>
+
+    <section id="evaluation" class="form-section">
+      <div class="form-heading"><span>PART II & III</span><h2>Warbird evaluator</h2></div>
+      <label>Ground (oral) evaluation notes<textarea name="ground_notes" rows="3" maxlength="450"></textarea></label>
+      <label>Air evaluation notes<textarea name="air_notes" rows="3" maxlength="450"></textarea></label>
+      <div class="field-grid two"><label>Location of flight evaluation<input name="evaluation_location"></label><label>Date of flight evaluation*<input required type="date" name="evaluation_date"></label></div>
+      <fieldset><legend>Form 8710.7 limitations</legend><div class="choice-row"><label><input type="checkbox" name="limitation_dogfight"> Dogfight</label><label><input type="checkbox" name="limitation_loops_rolls"> Combination of loops and rolls</label></div></fieldset>
+      <fieldset><legend>Altitude restrictions</legend><div class="choice-row"><label><input type="checkbox" name="altitude_250"> 250</label><label><input type="checkbox" name="altitude_500"> 500</label></div></fieldset>
+      <div class="field-grid two"><label>Show line category<input name="show_line_category"></label><label>Approved aircraft<input name="approved_aircraft"></label><label>Warbird evaluator name*<input required name="evaluator_name"></label><label>Aircraft flown*<input required name="aircraft_flown"></label><label class="span-2">Remarks<textarea name="remarks" rows="2"></textarea></label></div>
+    </section>
+
+    <section id="signatures" class="form-section">
+      <div class="form-heading"><span>ASSUMPTION OF RISK</span><h2>Applicant acknowledgement & signatures</h2><p>The legal agreement below is displayed from the source application so its wording is not rewritten by the website.</p></div>
+      <details class="waiver" open><summary>View assumption-of-risk / waiver pages</summary><div class="waiver-pages"><a href="{{ url_for('static', filename='img/waiver-page-2.png') }}" target="_blank"><img src="{{ url_for('static', filename='img/waiver-page-2.png') }}" alt="SAC waiver page 2"></a><a href="{{ url_for('static', filename='img/waiver-page-3.png') }}" target="_blank"><img src="{{ url_for('static', filename='img/waiver-page-3.png') }}" alt="SAC waiver page 3"></a></div></details>
+      <div class="field-grid two"><label>Applicant initials*<input required name="applicant_initials" maxlength="6"></label><label>Applicant signature date<input type="date" name="applicant_signature_date"></label></div>
+      <div class="signature-grid">
+        <div><div class="sig-label">Applicant signature*</div><canvas class="signature-pad" id="applicantPad" width="900" height="220"></canvas><div class="sig-actions"><button type="button" class="text-button" data-clear="applicantPad">Clear</button></div></div>
+        <div><div class="sig-label">Evaluator signature*</div><canvas class="signature-pad" id="evaluatorPad" width="900" height="220"></canvas><div class="sig-actions"><button type="button" class="text-button" data-clear="evaluatorPad">Clear</button></div></div>
+      </div>
+    </section>
+
+    <section id="review" class="form-section review-section">
+      <div class="form-heading"><span>FINAL REVIEW</span><h2>Preview, then submit to EAA</h2></div>
+      <div class="callout"><strong>Destination is fixed.</strong><p>The production server sends the completed PDF only to the configured EAA chairman email address. The recipient is not entered or selected on this page.</p></div>
+      <label class="certify"><input required type="checkbox" name="certify_complete"> I have reviewed this application and certify that the information entered is complete and accurate.</label>
+      <div class="final-actions"><button type="button" class="button secondary-dark" id="previewBtn">Preview Completed PDF</button><button type="submit" class="button primary" id="submitBtn">Submit Application to EAA</button></div>
+      <div id="statusBox" class="status-box" aria-live="polite"></div>
+    </section>
+  </form>
+</section>
+<div id="successModal" class="modal" hidden><div class="modal-card"><div class="success-mark">✓</div><h2>Application submitted</h2><p>Your completed SAC application was sent to the configured EAA chairman.</p><div class="submission-id" id="submissionId"></div><div class="modal-actions"><button type="button" class="button secondary-dark" id="downloadBtn">Download PDF</button><button type="button" class="button primary" onclick="window.location.reload()">Start New Application</button></div></div></div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/application.js', v='20260903v7') }}"></script>{% endblock %}

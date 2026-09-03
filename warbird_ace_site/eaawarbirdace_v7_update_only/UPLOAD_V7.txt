@@ -1,0 +1,9 @@
+V7 UPDATE
+
+This build uses a uniquely named PDF so a browser or CDN cannot keep showing the old form.
+
+After deployment, verify:
+1. /build-info shows V7-2026-09-03
+2. /application shows only 250 / 500, no 800, and no Rolls Only
+3. /official-sac-form shows the Sept. 3, 2026 fillable PDF
+4. Preview Completed PDF uses that same form
