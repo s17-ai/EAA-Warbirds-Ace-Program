@@ -1,15 +1,24 @@
-from pathlib import Path
+"""Small local PDF-generation smoke test for the current fillable SAC template."""
 from pdf_service import generate_pdf
 
 sample = {
-    "application_type":"new_issue","applicant_name":"TEST PILOT","email":"pilot@example.com","warbird_number":"12345","dob":"1980-01-01",
-    "address":"123 Aviation Way, Oshkosh, WI 54902","phone":"555-0100","fsdo":"Milwaukee","pilot_certificate":"1234567","certificate_type":"ATP",
-    "ratings":"ASEL, AMEL","medical_date":"2026-07-01","medical_type":"First","flight_review_date":"2026-06-01","requested_level":"500",
-    "experience":[{"site":"Practice Site","date":"2026-08-20","show":False,"practice":True}],
-    "ground_notes":"Satisfactory ground evaluation.","air_notes":"Satisfactory air evaluation.","evaluation_location":"KOSH","evaluation_date":"2026-08-31",
-    "limitation_dogfight":False,"limitation_rolls":False,"limitation_loops_rolls":True,"altitude_250":False,"altitude_500":True,"altitude_800":False,
-    "show_line_category":"Category I","approved_aircraft":"T-28","evaluator_name":"TEST EVALUATOR","aircraft_flown":"T-28","remarks":"Prototype coordinate check.",
-    "applicant_initials":"TP","applicant_signature_date":"2026-08-31","applicant_signature":"","evaluator_signature":"","certify_complete":True
+    "application_type": "new_issue",
+    "applicant_name": "Test Pilot",
+    "warbird_number": "1234",
+    "address": "123 Aviation Way\nAiken, SC 29801",
+    "pilot_certificate": "1234567",
+    "requested_level": "500",
+    "evaluation_date": "2026-09-03",
+    "limitation_dogfight": False,
+    "limitation_loops_rolls": True,
+    "altitude_250": False,
+    "altitude_500": True,
+    "evaluator_name": "Test Evaluator",
+    "aircraft_flown": "T-28",
+    "applicant_initials": "TP",
 }
-Path("sample-output.pdf").write_bytes(generate_pdf(sample,"TEST-REF"))
-print("Wrote sample-output.pdf")
+
+if __name__ == "__main__":
+    with open("sample-sac.pdf", "wb") as f:
+        f.write(generate_pdf(sample, "LOCAL-TEST"))
+    print("Wrote sample-sac.pdf")

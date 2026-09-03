@@ -1,10 +1,15 @@
-# PDF overlay field map
+# PDF field mapping - current fillable SAC form
 
-The source is US Letter, 612 x 792 points. Coordinates in `app.py` use PyMuPDF's top-left coordinate system.
+The website now fills the named AcroForm fields in `static/forms/woa-sac-blank.pdf` instead of stamping most values at hard-coded coordinates.
 
-The current map covers:
-- Page 1: application type; applicant identity/certificate/medical data; renewal experience rows; requested level; applicant signature/date; evaluator notes; evaluation location/date; limitations; altitude restrictions; show-line category; approved aircraft; evaluator name/signature/date; aircraft flown; remarks.
-- Page 2: applicant initials/date.
-- Page 3: applicant final signature/date.
+Key changes in this form revision:
 
-Before production, run test applications with long and short entries and visually verify every overlay against the committee-approved master. Adjust `draw_text`, `draw_multiline`, and coordinate tuples in `generate_pdf()` as needed.
+- Requested SAC level: 250 ft or 500 ft only.
+- Form 8710.7 limitations: Dogfight or Combination of Loops and Rolls only.
+- Altitude restrictions: 250 or 500 only.
+- Rolls Only and 800 ft selections are not present on the web page or PDF mapping.
+- The current PDF contains eight show/practice experience rows.
+- Applicant and evaluator handwritten signatures are captured on the website and embedded as images in the existing signature locations.
+- EAA office-use fields remain blank and editable in the generated PDF.
+
+If a future PDF revision changes field names, inspect it with the PDF form-field tools and update `pdf_service.py` accordingly.

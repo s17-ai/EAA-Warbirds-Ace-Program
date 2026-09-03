@@ -10,7 +10,7 @@
   let lastPdfBlob = null;
 
   const exp = document.getElementById('experienceRows');
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 8; i++) {
     const row = document.createElement('div');
     row.className = 'experience-row';
     row.innerHTML = `<input name="exp_site_${i}" aria-label="Show name or practice site row ${i+1}"><input type="date" name="exp_date_${i}" aria-label="Date row ${i+1}"><input type="checkbox" name="exp_show_${i}" aria-label="Show row ${i+1}"><input type="checkbox" name="exp_practice_${i}" aria-label="Practice row ${i+1}">`;
@@ -41,7 +41,7 @@
     for (const [k,v] of fd.entries()) data[k]=v;
     form.querySelectorAll('input[type=checkbox]').forEach(c=>data[c.name]=c.checked);
     data.experience=[];
-    for(let i=0;i<7;i++){const site=data[`exp_site_${i}`]||'', date=data[`exp_date_${i}`]||'', show=!!data[`exp_show_${i}`], practice=!!data[`exp_practice_${i}`]; if(site||date||show||practice)data.experience.push({site,date,show,practice}); delete data[`exp_site_${i}`];delete data[`exp_date_${i}`];delete data[`exp_show_${i}`];delete data[`exp_practice_${i}`];}
+    for(let i=0;i<8;i++){const site=data[`exp_site_${i}`]||'', date=data[`exp_date_${i}`]||'', show=!!data[`exp_show_${i}`], practice=!!data[`exp_practice_${i}`]; if(site||date||show||practice)data.experience.push({site,date,show,practice}); delete data[`exp_site_${i}`];delete data[`exp_date_${i}`];delete data[`exp_show_${i}`];delete data[`exp_practice_${i}`];}
     data.applicant_signature=pads.applicantPad.data(); data.evaluator_signature=pads.evaluatorPad.data();
     return data;
   }

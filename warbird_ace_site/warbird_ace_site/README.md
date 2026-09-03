@@ -8,11 +8,11 @@ This is a lean, evaluator-driven prototype for `www.eaawarbirdace.com`.
 - Conservative Warbirds/flight-standards visual identity.
 - Public access: no login and no saved drafts.
 - Responsive digital version of the existing three-page SAC application.
-- Seven renewal show/practice rows.
+- Eight renewal show/practice rows, matching the current fillable form.
 - Applicant and evaluator signature capture on touch, mouse, or stylus.
 - Source waiver pages shown as images so the legal wording is not silently rewritten.
 - PDF preview before submission.
-- Server-side PDF generation based on the supplied EAA-Warbird form.
+- Server-side PDF generation fills the named AcroForm fields in the current supplied EAA-Warbird fillable PDF.
 - Fixed chairman recipient configured only on the server through `CHAIRMAN_EMAIL` (`kschaick@eaa.org`).
 - SMTP email with the completed PDF attached.
 - Evaluator gets an on-screen confirmation and optional PDF download; no copy is emailed to the evaluator.
@@ -24,7 +24,7 @@ This is a lean, evaluator-driven prototype for `www.eaawarbirdace.com`.
 1. The sole chairman recipient is configured as `kschaick@eaa.org` through the server-side `CHAIRMAN_EMAIL` setting.
 2. Configure an SMTP provider in the environment variables. The site will not pretend to send an application if mail is not configured.
 3. Populate `static/data/evaluators.json` with the current ACE roster. An example schema is in `evaluators.example.json`.
-4. Verify every PDF overlay coordinate against the committee's preferred blank master before launch. The supplied source PDF contained a pre-marked 500-foot box and a handwritten evaluator signature, so this prototype creates a cleaned working master from it.
+4. The current supplied fillable PDF is the master document used for preview and submission. If EAA revises the PDF again, replace the master and verify the form-field names before deployment.
 5. Confirm acceptance of electronically captured signatures for this workflow.
 6. Confirm authorization/usage requirements for EAA/Warbirds marks on an independent domain.
 
