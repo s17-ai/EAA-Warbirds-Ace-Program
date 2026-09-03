@@ -7,7 +7,7 @@ Key changes in this form revision:
 - Requested SAC level: 250 ft or 500 ft only.
 - Form 8710.7 limitations: Dogfight or Combination of Loops and Rolls only.
 - Altitude restrictions: 250 or 500 only.
-- Rolls Only and 800 ft selections are not present on the web page or PDF mapping.
+- The web selection controls are synchronized to the current bundled fillable PDF.
 - The current PDF contains eight show/practice experience rows.
 - Applicant and evaluator handwritten signatures are captured on the website and embedded as images in the existing signature locations.
 - EAA office-use fields remain blank and editable in the generated PDF.

@@ -145,7 +145,7 @@ def evaluators():
 @app.get("/official-sac-form")
 def official_sac_form():
     return send_file(
-        BASE_DIR / "static" / "forms" / "woa-sac-blank.pdf",
+        BASE_DIR / "static" / "forms" / "WoA_SAC_Application_Fillable_Template_Final.pdf",
         mimetype="application/pdf",
         as_attachment=False,
         download_name="EAA-Warbirds-SAC-Application.pdf",

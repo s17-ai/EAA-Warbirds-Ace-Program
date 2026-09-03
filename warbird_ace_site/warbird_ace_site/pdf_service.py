@@ -8,7 +8,7 @@ import fitz
 from PIL import Image
 
 BASE_DIR = Path(__file__).resolve().parent
-TEMPLATE_PDF = BASE_DIR / "static" / "forms" / "woa-sac-blank.pdf"
+TEMPLATE_PDF = BASE_DIR / "static" / "forms" / "WoA_SAC_Application_Fillable_Template_Final.pdf"
 
 
 def clean(value, limit=500):
@@ -248,7 +248,7 @@ def generate_pdf(data, application_id="PREVIEW"):
     set_text(doc, "location_of_flight_evaluation", data.get("evaluation_location"))
     set_text(doc, "date_of_flight_evaluation", format_date(data.get("evaluation_date")))
 
-    # Current limitations: Rolls Only and all 800-foot selections were removed from the revised form.
+    # Map only the limitations present on the current approved web form.
     set_checkbox(doc, "limitation_dogfight", data.get("limitation_dogfight"))
     set_checkbox(doc, "limitation_combination_loops_rolls", data.get("limitation_loops_rolls"))
     set_checkbox(doc, "altitude_restriction_250", data.get("altitude_250"))
