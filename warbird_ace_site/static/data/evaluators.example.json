@@ -1,0 +1,9 @@
+[
+  {
+    "name": "Jane Example",
+    "region": "Southeast",
+    "state": "SC",
+    "email": "jane@example.com",
+    "aircraft": ["T-6", "T-28", "P-51"]
+  }
+]
